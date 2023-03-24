@@ -2,7 +2,7 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import MainStack from './MainStack';
 
-const MainNavigation = () => {
+const MainNavigation = (): JSX.Element => {
   return (
     <NavigationContainer>
       <MainStack />

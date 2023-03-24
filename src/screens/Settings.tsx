@@ -1,8 +1,8 @@
 import React from 'react';
-import {Text} from 'react-native';
+import {ScreenContainer} from 'react-native-screens';
 
 const Settings = (): JSX.Element => {
-  return <Text>123123</Text>;
+  return <ScreenContainer />;
 };
 
 export default Settings;

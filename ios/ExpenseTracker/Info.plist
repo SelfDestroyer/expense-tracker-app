@@ -69,9 +69,11 @@
 		<string>Octicons.ttf</string>
 		<string>Zocial.ttf</string>
 		<string>Fontisto.ttf</string>
-		<string>Ubuntu-Bold.ttf</string>
-		<string>Ubuntu-Medium.ttf</string>
-		<string>Ubuntu-Regular.ttf</string>
+		<string>SourceSansPro-Black.ttf</string>
+		<string>SourceSansPro-Bold.ttf</string>
+		<string>SourceSansPro-Light.ttf</string>
+		<string>SourceSansPro-Regular.ttf</string>
+		<string>SourceSansPro-SemiBold.ttf</string>
 	</array>
 </dict>
 </plist>
