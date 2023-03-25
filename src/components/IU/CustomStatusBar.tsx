@@ -3,11 +3,11 @@ import {StatusBar} from 'react-native';
 import {useTheme} from '../../hooks/theme/useTheme';
 
 const CustomStatusBar = (): JSX.Element => {
-  const {theme, isDarkTheme} = useTheme();
+  const {theme} = useTheme();
   return (
     <StatusBar
-      backgroundColor={isDarkTheme ? theme.colors.white : theme.colors.white}
-      barStyle={isDarkTheme ? 'light-content' : 'dark-content'}
+      backgroundColor={theme.colors.primary500}
+      barStyle={'light-content'}
     />
   );
 };

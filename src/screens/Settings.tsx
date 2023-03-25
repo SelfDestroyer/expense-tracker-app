@@ -1,5 +1,5 @@
 import React from 'react';
-import {ScreenContainer} from 'react-native-screens';
+import ScreenContainer from '../components/common/ScreenContainer';
 
 const Settings = (): JSX.Element => {
   return <ScreenContainer />;

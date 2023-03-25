@@ -10,19 +10,21 @@ import AllExpenses from '../screens/AllExpenses';
 import Settings from '../screens/Settings';
 import {ScreenTitles} from '../types/navigation/ScreenTitles';
 import Icon from 'react-native-vector-icons/Ionicons';
+import {useTheme} from '../hooks/theme/useTheme';
 
 const Tab = createBottomTabNavigator<BottomTabParamList>();
 
 const BottomTabsNavigation = (): JSX.Element => {
+  const {theme} = useTheme();
   const defaultScreenOptions: BottomTabNavigationOptions = {
-    // headerStyle: {
-    //   backgroundColor: colors.primary500,
-    // },
-    // headerTintColor: colors.white,
-    // tabBarStyle: {
-    //   backgroundColor: colors.primary500,
-    // },
-    // tabBarActiveTintColor: colors.accent500,
+    headerStyle: {
+      backgroundColor: theme.colors.primary500,
+    },
+    headerTintColor: theme.colors.white,
+    tabBarStyle: {
+      backgroundColor: theme.colors.primary500,
+    },
+    tabBarActiveTintColor: theme.colors.white,
   };
 
   return (
