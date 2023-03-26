@@ -8,8 +8,7 @@ import {Screen} from '../types/navigation/Screens';
 import BottomTabsNavigation from './BottomTabsNavigation';
 import {useTheme} from '../hooks/theme/useTheme';
 import {ScreenTitles} from '../types/navigation/ScreenTitles';
-import EditExpense from '../screens/EditExpense';
-import AddExpense from '../screens/AddExpense';
+import ManageExpense from '../screens/ManageExpense';
 
 const Stack = createNativeStackNavigator<MainStackParamList>();
 
@@ -34,19 +33,11 @@ const MainStack = (): JSX.Element => {
         }}
       />
       <Stack.Screen
-        name={Screen.EditExpense}
-        component={EditExpense}
+        name={Screen.ManageExpense}
+        component={ManageExpense}
         options={{
           presentation: 'modal',
-          title: ScreenTitles.EditExpenses,
-        }}
-      />
-      <Stack.Screen
-        name={Screen.AddExpense}
-        component={AddExpense}
-        options={{
-          presentation: 'modal',
-          title: ScreenTitles.AddExpenses,
+          title: ScreenTitles.ManageExpense,
         }}
       />
     </Stack.Navigator>

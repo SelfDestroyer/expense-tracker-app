@@ -27,13 +27,12 @@ export const expensesSlice = createSlice({
   name: 'expenses',
   initialState,
   reducers: {
-    removeExpense: (state, action: PayloadAction<string>) =>
+    removeExpense: (state, action: PayloadAction<string | undefined>) =>
       state.filter(expense => expense.id !== action.payload),
     addExpense: (state, action: PayloadAction<IExpense>) => {
       state.unshift(action.payload);
     },
     editExpense: (state, action: PayloadAction<IExpense>) => {
-      console.log(action);
       state.map(expense => {
         if (expense.id === action.payload.id) {
           expense.date = action.payload.date;

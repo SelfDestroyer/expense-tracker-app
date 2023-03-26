@@ -13,7 +13,7 @@ import ITheme from '../../types/styles/theme/DefautTheme';
 import {useTheme} from '../../hooks/theme/useTheme';
 import ThemeFont from '../../types/styles/theme/ThemeFont';
 import {useNavigation} from '@react-navigation/native';
-import {EditExpenseNavigationProps} from '../../types/navigation/ScreenTypes';
+import {ManageExpenseNavigationProps} from '../../types/navigation/ScreenTypes';
 import {Screen} from '../../types/navigation/Screens';
 
 const ExpenseItem: FC<IExpense> = ({
@@ -30,10 +30,15 @@ const ExpenseItem: FC<IExpense> = ({
   }: PressableStateCallbackType): ViewStyle | false =>
     Platform.OS === 'ios' && pressed && themedStyles.pressed;
 
-  const navigation = useNavigation<EditExpenseNavigationProps>();
+  const navigation = useNavigation<ManageExpenseNavigationProps>();
   const onExpanseItemPressHandler = () =>
-    navigation.navigate(Screen.EditExpense, {
-      expanseId: id,
+    navigation.navigate(Screen.ManageExpense, {
+      expense: {
+        id: id,
+        description: description,
+        amount: amount,
+        date: date,
+      },
     });
 
   return (

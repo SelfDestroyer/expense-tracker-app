@@ -5,18 +5,19 @@ import {
 
 import {MainStackParamList} from './MainStackParamList';
 import {Screen} from './Screens';
+import {BottomTabParamList} from './BottomTabParamList';
 
-export type EditExpenseNavigationProps = NativeStackNavigationProp<
+export type ManageExpenseNavigationProps = NativeStackNavigationProp<
   MainStackParamList,
-  Screen.EditExpense
+  Screen.ManageExpense
 >;
 
-export type EditExpenseScreenProps = NativeStackScreenProps<
+export type ManageExpenseScreenProps = NativeStackScreenProps<
   MainStackParamList,
-  Screen.EditExpense
+  Screen.ManageExpense
 >;
 
-export type AddExpensesScreenProps = NativeStackScreenProps<
-  MainStackParamList,
-  Screen.AddExpense
+export type SettingsScreenProps = NativeStackScreenProps<
+  BottomTabParamList,
+  Screen.Settings
 >;

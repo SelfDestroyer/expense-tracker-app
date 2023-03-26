@@ -1,11 +1,11 @@
 import {Screen} from './Screens';
+import IExpense from '../../models/IExpense';
 
 export type MainStackParamList = {
   [Screen.AllExpenses]: undefined;
   [Screen.ExpensesOverview]: undefined;
   [Screen.RecentExpenses]: undefined;
-  [Screen.EditExpense]: {
-    expanseId: string;
+  [Screen.ManageExpense]: {
+    expense?: IExpense;
   };
-  [Screen.AddExpense]: undefined;
 };

@@ -17,7 +17,7 @@ type ButtonProps = {
   readonly style?: ViewStyle;
 };
 
-const Button: FC<ButtonProps> = ({
+const CustomButton: FC<ButtonProps> = ({
   title,
   onPress,
   mode,
@@ -48,7 +48,7 @@ const Button: FC<ButtonProps> = ({
   );
 };
 
-export default Button;
+export default CustomButton;
 
 const styles = (theme: ITheme) =>
   StyleSheet.create({

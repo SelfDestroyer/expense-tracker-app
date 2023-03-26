@@ -8,7 +8,11 @@ const AllExpenses = (): JSX.Element => {
 
   return (
     <ScreenContainer>
-      <ExpensesOutput expensesPeriod={'Total'} expenses={expenses} />
+      <ExpensesOutput
+        expensesPeriod={'Total'}
+        expenses={expenses}
+        fallBackText={'No registered expenses found!'}
+      />
     </ScreenContainer>
   );
 };

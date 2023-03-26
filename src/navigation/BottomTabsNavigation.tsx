@@ -17,11 +17,7 @@ const Tab = createBottomTabNavigator<BottomTabParamList>();
 
 const BottomTabsNavigation = (): JSX.Element => {
   const {theme} = useTheme();
-  const setDefaultScreenOptions = ({
-    navigation,
-  }: {
-    navigation: any;
-  }): BottomTabNavigationOptions => ({
+  const defaultScreenOptions: BottomTabNavigationOptions = {
     headerStyle: {
       backgroundColor: theme.colors.primary500,
     },
@@ -30,12 +26,12 @@ const BottomTabsNavigation = (): JSX.Element => {
       backgroundColor: theme.colors.primary500,
     },
     tabBarActiveTintColor: theme.colors.white,
-  });
+  };
 
   return (
     <Tab.Navigator
       initialRouteName={Screen.AllExpenses}
-      screenOptions={setDefaultScreenOptions}>
+      screenOptions={defaultScreenOptions}>
       <Tab.Screen
         name={Screen.AllExpenses}
         component={AllExpenses}
@@ -50,7 +46,7 @@ const BottomTabsNavigation = (): JSX.Element => {
               color={tintColor}
               size={24}
               iconName={'add'}
-              onPress={() => navigation.navigate(Screen.AddExpense)}
+              onPress={() => navigation.navigate(Screen.ManageExpense)}
             />
           ),
         })}
@@ -69,7 +65,7 @@ const BottomTabsNavigation = (): JSX.Element => {
               color={tintColor}
               size={24}
               iconName={'add'}
-              onPress={() => navigation.navigate(Screen.AddExpense)}
+              onPress={() => navigation.navigate(Screen.ManageExpense)}
             />
           ),
         })}

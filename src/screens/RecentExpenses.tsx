@@ -15,6 +15,7 @@ const RecentExpenses = (): JSX.Element => {
       <ExpensesOutput
         expensesPeriod={'Last 7 Days'}
         expenses={recentExpanses}
+        fallBackText={'No expenses registered for the last 7 days.'}
       />
     </ScreenContainer>
   );
