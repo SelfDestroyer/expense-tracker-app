@@ -1,31 +1,54 @@
 import React, {FC, useMemo} from 'react';
-import {Pressable, StyleSheet, Text, View} from 'react-native';
+import {
+  Platform,
+  Pressable,
+  PressableStateCallbackType,
+  StyleSheet,
+  Text,
+  View,
+  ViewStyle,
+} from 'react-native';
 import IExpense from '../../models/IExpense';
 import ITheme from '../../types/styles/theme/DefautTheme';
 import {useTheme} from '../../hooks/theme/useTheme';
 import ThemeFont from '../../types/styles/theme/ThemeFont';
-import getFormattedDate from '../../utils/getFormattedDate';
+import {useNavigation} from '@react-navigation/native';
+import {EditExpenseNavigationProps} from '../../types/navigation/ScreenTypes';
+import {Screen} from '../../types/navigation/Screens';
 
 const ExpenseItem: FC<IExpense> = ({
   description,
   date,
   amount,
+  id,
 }): JSX.Element => {
   const {theme} = useTheme();
 
   const themedStyles = useMemo(() => styles(theme), [theme]);
+  const onPressStyleChangeHandler = ({
+    pressed,
+  }: PressableStateCallbackType): ViewStyle | false =>
+    Platform.OS === 'ios' && pressed && themedStyles.pressed;
+
+  const navigation = useNavigation<EditExpenseNavigationProps>();
+  const onExpanseItemPressHandler = () =>
+    navigation.navigate(Screen.EditExpense, {
+      expanseId: id,
+    });
 
   return (
-    <Pressable>
+    <Pressable
+      onPress={onExpanseItemPressHandler}
+      style={onPressStyleChangeHandler}>
       <View style={themedStyles.container}>
         <View>
           <Text style={[themedStyles.textBase, themedStyles.description]}>
             {description}
           </Text>
-          <Text style={themedStyles.textBase}>{getFormattedDate(date)}</Text>
+          <Text style={themedStyles.textBase}>{date}</Text>
         </View>
         <View style={themedStyles.amountContainer}>
-          <Text style={themedStyles.amount}>{amount.toFixed(2)}</Text>
+          <Text style={themedStyles.amount}>${amount.toFixed(2)}</Text>
         </View>
       </View>
     </Pressable>
@@ -53,6 +76,7 @@ const styles = (theme: ITheme) =>
       shadowOpacity: 0.4,
     },
     textBase: {
+      fontSize: 16,
       color: theme.colors.primary50,
       fontWeight: '400',
       fontFamily: ThemeFont.SourceSansProRegular,
@@ -72,8 +96,13 @@ const styles = (theme: ITheme) =>
       minWidth: 80,
     },
     amount: {
+      fontSize: 14,
+
       color: theme.colors.primary500,
       fontWeight: '700',
       fontFamily: ThemeFont.SourceSansProBold,
+    },
+    pressed: {
+      opacity: 0.5,
     },
   });

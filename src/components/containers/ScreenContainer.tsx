@@ -1,14 +1,20 @@
 import React, {FC, PropsWithChildren, useMemo} from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, ViewStyle} from 'react-native';
 import ITheme from '../../types/styles/theme/DefautTheme';
 import {useTheme} from '../../hooks/theme/useTheme';
 
-const ScreenContainer: FC<PropsWithChildren> = ({children}): JSX.Element => {
+type ScreenContainerProps = PropsWithChildren & {
+  readonly style?: ViewStyle;
+};
+const ScreenContainer: FC<ScreenContainerProps> = ({
+  children,
+  style,
+}): JSX.Element => {
   const {theme} = useTheme();
 
   const themedStyles = useMemo(() => styles(theme), [theme]);
 
-  return <View style={themedStyles.container}>{children}</View>;
+  return <View style={[themedStyles.container, style]}>{children}</View>;
 };
 
 export default ScreenContainer;

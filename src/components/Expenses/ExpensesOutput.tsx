@@ -3,15 +3,16 @@ import {StyleSheet, View} from 'react-native';
 import ExpensesSummary from './ExpensesSummary';
 import ExpensesList from '../lists/ExpensesList';
 import {useAppSelector} from '../../hooks/redux/useAppSelector';
+import IExpense from '../../models/IExpense';
 
 type ExpensesOutputProps = {
   readonly expensesPeriod: string;
+  readonly expenses: IExpense[];
 };
 const ExpensesOutput: FC<ExpensesOutputProps> = ({
   expensesPeriod,
+  expenses,
 }): JSX.Element => {
-  const expenses = useAppSelector(state => state.expenses);
-
   return (
     <View style={styles.container}>
       <ExpensesSummary expensesPeriod={expensesPeriod} expenses={expenses} />

@@ -1,7 +1,8 @@
 export enum Screen {
   Settings = 'Settings',
   AllExpenses = 'AllExpenses',
-  ManageExpenses = 'ManageExpenses',
+  EditExpense = 'EditExpense',
+  AddExpense = 'AddExpense',
   RecentExpenses = 'RecentExpenses',
   ExpensesOverview = 'ExpensesOverview',
 }

@@ -11,7 +11,7 @@ import {
 } from 'redux-persist/es/constants';
 import {PersistConfig} from 'redux-persist/es/types';
 
-import expensesSlice from './slices/expenses';
+import expensesSlice from './slices/expensesSlice';
 
 export const rootReducer = combineReducers({
   expenses: expensesSlice,

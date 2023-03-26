@@ -42,7 +42,7 @@ const styles = (theme: ITheme) =>
       alignItems: 'center',
     },
     period: {
-      fontSize: 12,
+      fontSize: 16,
       fontWeight: '400',
       color: theme.colors.primary400,
       fontFamily: ThemeFont.SourceSansProRegular,
