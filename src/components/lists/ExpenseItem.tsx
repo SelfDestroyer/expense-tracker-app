@@ -102,7 +102,6 @@ const styles = (theme: ITheme) =>
     },
     amount: {
       fontSize: 14,
-
       color: theme.colors.primary500,
       fontWeight: '700',
       fontFamily: ThemeFont.SourceSansProBold,

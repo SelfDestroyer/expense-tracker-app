@@ -23,12 +23,16 @@ const ExpenseForm: FC<ExpenseFormProps> = ({
   onSubmit,
   defaultValues,
 }): JSX.Element => {
-  const [inputValues, setInputValues] = useState<
-    Omit<IExpense, 'id' | 'amount'> & {amount: string}
-  >({
-    date: defaultValues?.date || '',
-    description: defaultValues?.description || '',
-    amount: defaultValues?.amount.toString() || '',
+  const [inputValues, setInputValues] = useState({
+    date: {value: defaultValues?.date || '', isValid: true},
+    description: {
+      value: defaultValues?.description || '',
+      isValid: true,
+    },
+    amount: {
+      value: defaultValues?.amount.toString() || '',
+      isValid: true,
+    },
   });
 
   const {theme} = useTheme();
@@ -37,14 +41,17 @@ const ExpenseForm: FC<ExpenseFormProps> = ({
   const inputChangeHandler = (inputIdentifier: string, value: string) => {
     setInputValues(prevState => ({
       ...prevState,
-      [inputIdentifier]: value,
+      [inputIdentifier]: {
+        value: value,
+        isValid: value.length === 0 ? false : true,
+      },
     }));
   };
 
   const amountTextInputConfig: TextInputProps = {
     keyboardType: 'decimal-pad',
     onChangeText: inputChangeHandler.bind(this, 'amount'),
-    value: inputValues.amount,
+    value: inputValues.amount.value,
   };
 
   const dateTextInputConfig: TextInputProps = {
@@ -52,21 +59,21 @@ const ExpenseForm: FC<ExpenseFormProps> = ({
     placeholderTextColor: theme.colors.gray500,
     maxLength: 10,
     onChangeText: inputChangeHandler.bind(this, 'date'),
-    value: inputValues.date,
+    value: inputValues.date.value,
   };
 
   const descriptionTextInputConfig: TextInputProps = {
     multiline: true,
     onChangeText: inputChangeHandler.bind(this, 'description'),
-    value: inputValues.description,
+    value: inputValues.description.value,
   };
 
   const submitHandler = () => {
     const submitData: IExpense = {
       id: defaultValues?.id || uuidv4(),
-      date: inputValues.date,
-      description: inputValues.description,
-      amount: +inputValues.amount,
+      date: inputValues.date.value,
+      description: inputValues.description.value,
+      amount: +inputValues.amount.value,
     };
 
     const amountIsValid = !isNaN(submitData.amount) && submitData.amount > 0;
@@ -74,7 +81,20 @@ const ExpenseForm: FC<ExpenseFormProps> = ({
     const descriptionIsValid = submitData.description.trim().length > 0;
 
     if (!amountIsValid || !dateIsValid || !descriptionIsValid) {
-      Alert.alert('Invalid input', 'Please check your input values');
+      setInputValues(prevState => ({
+        date: {
+          value: prevState.date.value,
+          isValid: dateIsValid,
+        },
+        description: {
+          value: prevState.description.value,
+          isValid: descriptionIsValid,
+        },
+        amount: {
+          value: prevState.amount.value,
+          isValid: amountIsValid,
+        },
+      }));
       return;
     }
     onSubmit(submitData);
@@ -88,16 +108,19 @@ const ExpenseForm: FC<ExpenseFormProps> = ({
           label={'Amount'}
           textInputConfig={amountTextInputConfig}
           style={themedStyles.inputRow}
+          isValid={inputValues.amount.isValid}
         />
         <CustomInput
           label={'Date'}
           textInputConfig={dateTextInputConfig}
           style={themedStyles.inputRow}
+          isValid={inputValues.date.isValid}
         />
       </View>
       <CustomInput
         label={'Description'}
         textInputConfig={descriptionTextInputConfig}
+        isValid={inputValues.description.isValid}
       />
 
       <View style={themedStyles.buttonContainer}>

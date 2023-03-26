@@ -1,4 +1,4 @@
-import React, {FC, useMemo, useState} from 'react';
+import React, {FC, useMemo} from 'react';
 import ScreenContainer from '../components/containers/ScreenContainer';
 import {StyleSheet, Switch, Text, View} from 'react-native';
 import {useTheme} from '../hooks/theme/useTheme';
@@ -8,7 +8,7 @@ import ITheme from '../types/styles/theme/DefautTheme';
 import ThemeFont from '../types/styles/theme/ThemeFont';
 
 const Settings: FC<SettingsScreenProps> = (): JSX.Element => {
-  const {isDarkTheme, setTheme, theme, themeMode} = useTheme();
+  const {isDarkTheme, setTheme, theme} = useTheme();
 
   const themedStyles = useMemo(() => styles(theme), [theme]);
 
@@ -24,9 +24,7 @@ const Settings: FC<SettingsScreenProps> = (): JSX.Element => {
             false: theme.colors.primary100,
             true: theme.colors.primary100,
           }}
-          thumbColor={
-            isDarkTheme ? theme.colors.primary400 : theme.colors.white
-          }
+          thumbColor={theme.colors.white}
           ios_backgroundColor={theme.colors.primary400}
           onValueChange={onValueChangeHandler}
           value={isDarkTheme}

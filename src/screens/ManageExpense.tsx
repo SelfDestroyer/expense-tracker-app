@@ -1,4 +1,4 @@
-import React, {FC, useMemo} from 'react';
+import React, {FC, useLayoutEffect, useMemo} from 'react';
 import ScreenContainer from '../components/containers/ScreenContainer';
 import {ManageExpenseScreenProps} from '../types/navigation/ScreenTypes';
 import ExpenseForm from '../components/Expenses/ExpenseForm';
@@ -52,6 +52,12 @@ const ManageExpense: FC<ManageExpenseScreenProps> = ({
     canselHandler();
   };
 
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      title: expense ? 'Edit Expense' : 'Add Expense',
+    });
+  }, [expense, navigation, theme]);
+
   return (
     <ScreenContainer style={themedStyles.container}>
       <ExpenseForm
@@ -60,16 +66,16 @@ const ManageExpense: FC<ManageExpenseScreenProps> = ({
         onSubmit={submitHandler}
         defaultValues={expense}
       />
-      <View style={themedStyles.deleteContainer}>
-        {isEditing && (
+      {isEditing && (
+        <View style={themedStyles.deleteContainer}>
           <IconButton
             color={theme.colors.error500}
             size={36}
             iconName={'trash'}
             onPress={deleteExpanseHandler}
           />
-        )}
-      </View>
+        </View>
+      )}
     </ScreenContainer>
   );
 };
